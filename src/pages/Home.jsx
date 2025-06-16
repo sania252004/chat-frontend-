@@ -90,7 +90,7 @@ const Home = () => {
         </div>
       </div>
 
-      {chats && chats.length === 0 ? (
+      {chats && chats.length === 0 ? (  
         ""
       ) : (
         <div className="fixed bottom-0 right-0 left-auto p-4 bg-gray-900 w-full md:w-[75%]">
