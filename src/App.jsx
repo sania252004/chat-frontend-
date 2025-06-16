@@ -6,8 +6,7 @@ import { UserData } from './context/UserContext';
 import { LoadingBig } from './components/Loading';
 
 const App = () => {
-  const { user, isAuth, loading } = UserData(); 
-  console.log("Logged-in user:", user); 
+  const { user, isAuth, loading } = UserData();
   return (
   <>
     {loading ? (
