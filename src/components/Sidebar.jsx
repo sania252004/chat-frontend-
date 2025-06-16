@@ -44,8 +44,8 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         <p className="text-sm text-gray-400 mb-2">Recent Chat</p>
 
         <div className="max-h-[500px] overflow-y-auto mb-20 md:mb-0
-        thin-scrollbar scrollbar-thin scrollbar-thumb-gray-600
-        scrollbar-track-gray-800"> 
+        thin-scrollbar scrollbar-thin scrollbar-thumb-gray-600 
+        scrollbar-track-gray-800">  
           {chats && chats.length > 0 ? ( 
             chats.map((e) => (
               <div
