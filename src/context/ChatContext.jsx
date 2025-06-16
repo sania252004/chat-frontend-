@@ -86,6 +86,7 @@ export const ChatProvider = ({ children }) => {
       fetchChats();
       setCreateLoad(false);
     } catch (error) {
+      console.error("Error creating chat:", error); 
       toast.error("Something went wrong");
       setCreateLoad(false);
     }
