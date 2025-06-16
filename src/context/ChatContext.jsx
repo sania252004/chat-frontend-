@@ -17,7 +17,7 @@ export const ChatProvider = ({ children }) => {
   async function fetchResponse() {
     if (prompt === "") return alert("Write prompt");
     setNewRequestLoading(true);
-    const currentPrompt = prompt;
+    const currentPrompt = prompt; 
     setPrompt("");
     try {
       const response = await axios({
