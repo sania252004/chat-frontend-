@@ -6,20 +6,19 @@ import { UserData } from "../context/UserContext";
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
   const { chats, createChat, createLoad, setSelected, deleteChat } = ChatData(); 
-
-  const { logoutHandler } = UserData()
+  const { logoutHandler } = UserData();
 
   const deleteChatHandler = (id) => {
-    if(confirm("Are you sure, you want to delete this chat ? ")){
+    if (confirm("Are you sure, you want to delete this chat ? ")) {
       deleteChat(id); 
     }
   };
 
-  const clickEvent = (id) =>{
-    setSelected(id)
-    toggleSidebar; 
+  const clickEvent = (id) => {
+    setSelected(id);
+    toggleSidebar;
+  };
 
-  }
   return (
     <div
       className={`fixed inset-0 z-50 w-3/4 md:w-1/4 bg-gray-800 p-4 transition-transform transform
@@ -27,57 +26,67 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
     >
+      {/* Close Button for Small Screens */}
       <button
         className="md:hidden p-2 mb-4 bg-gray-700 rounded-full text-white text-2xl"
         onClick={toggleSidebar}
       >
-        <IoIosCloseCircle/> 
-      </button> 
+        <IoIosCloseCircle />
+      </button>
+
+      {/* Title */}
       <div className="text-2xl font-semibold mb-6">ChatBot</div>
+
+      {/* New Chat Button */}
       <div className="mb-4">
-        <button onClick={createChat} className="w-full py-2 bg-gray-700 hover:bg-gray-600
-        rounded ">
-          {createLoad ? <LoadingSpinner/>:" New Chat + "}
-        </button> 
+        <button
+          onClick={createChat}
+          className="w-full py-2 bg-gray-700 hover:bg-gray-600 rounded"
+        >
+          {createLoad ? <LoadingSpinner /> : " New Chat + "}
+        </button>
       </div>
+
+      {/* Recent Chats */}
       <div>
         <p className="text-sm text-gray-400 mb-2">Recent Chat</p>
 
-        <div className="max-h-[500px] overflow-y-auto mb-20 md:mb-0
-        thin-scrollbar scrollbar-thin scrollbar-thumb-gray-600 
-        scrollbar-track-gray-800">  
-          {chats && chats.length > 0 ? ( 
-            chats.map((e) => (
+        <div
+          className="max-h-[500px] overflow-y-auto thin-scrollbar 
+          scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800 mb-4"
+        >
+          {chats && chats.length > 0 ? (
+            chats.map((e) => ( 
               <div
-                key={e._id} 
-                className="w-full text-left py-2 px-2 bg-gray-700
-                hover:bg-gray-600 rounded mt-2 flex justify-between 
-                items-center" 
-                onClick={() => clickEvent(e._id)} 
-              > 
-                <span>{e.latestMessage.slice(0,38)}...</span> 
-                <button className="bg-red-600 text-white text-xl px-3 py-2 
-                  rounded-md hover:bg-red-700"
-                  onClick={() => deleteChatHandler (e._id)}> 
-                  <MdDelete/>
-                </button> 
-              </div>               
-            )) 
+                key={e._id}
+                className="w-full text-left py-2 px-2 bg-gray-700 hover:bg-gray-600 rounded mt-2 flex justify-between items-center"
+                onClick={() => clickEvent(e._id)}
+              >
+                <span>{e.latestMessage.slice(0, 38)}...</span>
+                <button
+                  className="bg-red-600 text-white text-xl px-3 py-2 rounded-md hover:bg-red-700"
+                  onClick={() => deleteChatHandler(e._id)}
+                >
+                  <MdDelete />
+                </button>
+              </div>
+            ))
           ) : (
             <p className="text-gray-400 text-center">No recent chats</p>
           )}
         </div>
       </div>
 
+      {/* Logout Button */}
       <div className="absolute bottom-0 mb-6 w-full">
-        <button className="bg-red-600 text-white text-xl px-3 py-2 
-        rounded-md hover:bg-red-700"
-        onClick={logoutHandler}
+        <button
+          className="bg-red-600 text-white text-xl px-3 py-2 rounded-md hover:bg-red-700"
+          onClick={logoutHandler}
         >
           Logout
-        </button>  
+        </button>
       </div>
-    </div> 
+    </div>
   );
 };
 
