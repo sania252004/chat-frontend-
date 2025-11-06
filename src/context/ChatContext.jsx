@@ -58,18 +58,23 @@ export const ChatProvider = ({ children }) => {
   }
 
   async function fetchChats() {
-    try {
-      const { data } = await axios.get(`${server}/api/chat/all`, {
+  try {
+    const { data } = await axios.get(
+      "https://chatserver-1-n3eg.onrender.com/api/chat/all",
+      {
         headers: {
           token: localStorage.getItem("token"),
         },
-      });
-      setChats(data);
-      if (data.length > 0) setSelected(data[0]._id);
-    } catch {
-      console.log("An error occurred while fetching messages.");
-    }
+      }
+    );
+
+    setChats(data);
+    if (data.length > 0) setSelected(data[0]._id);
+  } catch (error) {
+    console.error("❌ Error while fetching messages:", error.response?.data || error.message);
   }
+}
+
 
   async function createChat() {
     setCreateLoad(true);
